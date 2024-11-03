@@ -1,5 +1,7 @@
 package edu.grinnell.csc207.util;
 
+import java.io.PrintWriter;
+
 public class Tiles {
   
   // +--------+------------------------------------------------------
@@ -77,7 +79,7 @@ public class Tiles {
   /**
    * Flips a tile.
    *
-   * @param board the board contiaining the tiles to flip.
+   * @param board the board containing the tiles to flip.
    * @param row the row of the tile to be flipped.
    * @param col the column of the tile to be flipped.
    */
@@ -91,8 +93,23 @@ public class Tiles {
     } // if
   } // flipTile(int, int)
 
+  /**
+   * Returns a boolean indicating if the Tiles, board and this.tileBoard, are equal.
+   *
+   * @param board the board to compare tileBoard to.
+   * @return a boolean indicating equality of tiles.
+   */
   public boolean checkEqual(Tiles board){
     return this.tileBoard.equals(board.tileBoard);
   } // checkEqual(Tiles)
+
+  /**
+   * Prints the tileBoard.
+   *
+   * @param pen Used for printing.
+   */
+  public void print(PrintWriter pen) {
+    Matrix.print(pen, this.tileBoard);
+  } // print(PrintWriter)
 
 } // class Tiles

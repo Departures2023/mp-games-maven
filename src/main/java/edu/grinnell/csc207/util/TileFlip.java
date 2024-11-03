@@ -1,5 +1,7 @@
 package edu.grinnell.csc207.util;
 
+import java.io.PrintWriter;
+
 public class TileFlip {
 
   /**
@@ -21,6 +23,16 @@ public class TileFlip {
    */
   Tiles tileBoard;
 
+  /**
+   * The number correlating with the pattern of how the tileBoard is mixed up.
+   */
+  int idNumber;
+
+  /**
+   * The number of times the tileBoard is mixed up.
+   */
+  int generationNumber;
+
 
   // +--------------+------------------------------------------------
   // | Constructors |
@@ -28,9 +40,13 @@ public class TileFlip {
 
   /**
    * Intializes TileFlip game with default sized board.
+   *
+   * @param serialNumber the specific pattern of the TileFlip game.
+   * @param randomGenerationLimit the number of times the board is mixed up.
    */
-  public TileFlip() {
+  public TileFlip(int serialNumber, int randomGenerationLimit) {
     tileBoard = new Tiles(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    createRandomStart(serialNumber, randomGenerationLimit);
   } // TileFlip()
 
   /**
@@ -38,9 +54,12 @@ public class TileFlip {
    *
    * @param width width of tileBoard
    * @param height height of tileBoard
+   * @param serialNumber the specific pattern of the TileFlip game.
+   * @param randomGenerationLimit the number of times the board is mixed up.
    */
-  public TileFlip(int width, int height) {
+  public TileFlip(int width, int height, int serialNumber, int randomGenerationLimit) {
     tileBoard = new Tiles(width, height);
+    createRandomStart(serialNumber, randomGenerationLimit);
   } // TileFlip(int, int)
 
   // +--------------+------------------------------------------------
@@ -74,7 +93,34 @@ public class TileFlip {
     this.tileBoard.flipTile(row, col - 1);
   } // flipTilesAction(int, int)
 
+  /**
+   * Creates a solvable TileFlip with a random pattern.
+   * 
+   * @param serialNumber The id number that generates a specific tile board.
+   * @param randomGenerationLimit The amount of times to keep mixing up the board.
+   */
+  public void createRandomStart(int serialNumber, int randomGenerationLimit) {
+    for (int i = 0; i < randomGenerationLimit; i++) {
+      this.flipTilesAction((serialNumber * i) % this.tileBoard.height(), (serialNumber * i) % this.tileBoard.width());
+    } // for
+  } // createRandomStart
 
+  /**
+   * Prints idNumber and generationNumber
+   *
+   * @param pen Used for printing.
+   */
+  public void giveIDandGenerationNums(PrintWriter pen) {
+    pen.println("ID: " + idNumber + "          " + "GENERATION: " + generationNumber);
+  } // giveIDandGenerationNums(PrintWriter)
 
-
+  /**
+   * Prints the tileBoard and the id and generation numbers.
+   *
+   * @param pen Used for printing.
+   */
+  public void printTileBoard(PrintWriter pen) {
+    giveIDandGenerationNums(pen);
+    this.tileBoard.print(pen);
+  } // printTileBoard(pen)
 }
