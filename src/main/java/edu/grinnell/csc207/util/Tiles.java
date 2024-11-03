@@ -2,6 +2,10 @@ package edu.grinnell.csc207.util;
 
 public class Tiles {
   
+  // +--------+------------------------------------------------------
+  // | Fields |
+  // +--------+
+
   /**
    * A matrix containing "tiles" that can be flipped, i.e.
    * either store X or O.
@@ -19,6 +23,11 @@ public class Tiles {
    */
   int height;
 
+  // +--------------+------------------------------------------------
+  // | Constructors |
+  // +--------------+
+
+
   /**
    * Sets up a Board of Tiles.
    *
@@ -33,6 +42,10 @@ public class Tiles {
   } // Tiles(int, int)
 
 
+  // +--------------+------------------------------------------------
+  // | Core methods |
+  // +--------------+
+
   /**
    * Returns the state of the tile located at width and height.
    *
@@ -44,19 +57,42 @@ public class Tiles {
   } // tileState(int, int)
 
   /**
+   * Returns the width of the tile board.
+   *
+   * @return the width.
+   */
+  public int width() {
+    return this.width;
+  } // width()
+
+  /**
+   * Returns the height of the tile board.
+   *
+   * @return the height.
+   */
+  public int height() {
+    return this.height;
+  } // height()
+
+  /**
    * Flips a tile.
    *
    * @param board the board contiaining the tiles to flip.
    * @param row the row of the tile to be flipped.
    * @param col the column of the tile to be flipped.
    */
-  static void flipTile(Matrix<String> board, int row, int col) {
-    if (row >= 0 && row < board.height() && col >= 0 && col < board.width()) {
-      if (board.get(row, col).equals("O")) {
-        board.set(row, col, "X");
+  public void flipTile(int row, int col) {
+    if (row >= 0 && row < this.height() && col >= 0 && col < this.width()) {
+      if (this.tileBoard.get(row, col).equals("O")) {
+        this.tileBoard.set(row, col, "X");
       } else {
-        board.set(row, col, "O");
+        this.tileBoard.set(row, col, "O");
       } // if/else
     } // if
-  } // flipTile(Matrix<String>, int, int)
+  } // flipTile(int, int)
+
+  public boolean checkEqual(Tiles board){
+    return this.tileBoard.equals(board.tileBoard);
+  } // checkEqual(Tiles)
+
 } // class Tiles
