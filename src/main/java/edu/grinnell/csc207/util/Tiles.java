@@ -2,6 +2,12 @@ package edu.grinnell.csc207.util;
 
 import java.io.PrintWriter;
 
+/**
+ * Implements a board of tiles that can be flipped.
+ *
+ * @author Kevin Tang
+ * @author Richard Lin
+ */
 public class Tiles {
   
   // +--------+------------------------------------------------------
@@ -85,7 +91,7 @@ public class Tiles {
    */
   public void flipTile(int row, int col) {
     if (row >= 0 && row < this.height() && col >= 0 && col < this.width()) {
-      if (this.tileBoard.get(row, col).equals("O")) {
+      if (this.tileState(row, col).equals("O")) {
         this.tileBoard.set(row, col, "X");
       } else {
         this.tileBoard.set(row, col, "O");
@@ -109,7 +115,7 @@ public class Tiles {
    * @param pen Used for printing.
    */
   public void print(PrintWriter pen) {
-    Matrix.print(pen, this.tileBoard);
+    Matrix.print(pen, this.tileBoard,true);
   } // print(PrintWriter)
 
 } // class Tiles

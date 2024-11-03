@@ -1,7 +1,14 @@
 package edu.grinnell.csc207.util;
 
 import java.io.PrintWriter;
+import java.util.Random;
 
+/**
+ * Implements a tileflip board game.
+ *
+ * @author Kevin Tang
+ * @author Richard Lin
+ */
 public class TileFlip {
 
   /**
@@ -23,17 +30,6 @@ public class TileFlip {
    */
   Tiles tileBoard;
 
-  /**
-   * The number correlating with the pattern of how the tileBoard is mixed up.
-   */
-  int idNumber;
-
-  /**
-   * The number of times the tileBoard is mixed up.
-   */
-  int generationNumber;
-
-
   // +--------------+------------------------------------------------
   // | Constructors |
   // +--------------+
@@ -44,9 +40,9 @@ public class TileFlip {
    * @param serialNumber the specific pattern of the TileFlip game.
    * @param randomGenerationLimit the number of times the board is mixed up.
    */
-  public TileFlip(int serialNumber, int randomGenerationLimit) {
+  public TileFlip(int difficulty) {
     tileBoard = new Tiles(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-    createRandomStart(serialNumber, randomGenerationLimit);
+    createRandomStart(difficulty);
   } // TileFlip()
 
   /**
@@ -57,9 +53,9 @@ public class TileFlip {
    * @param serialNumber the specific pattern of the TileFlip game.
    * @param randomGenerationLimit the number of times the board is mixed up.
    */
-  public TileFlip(int width, int height, int serialNumber, int randomGenerationLimit) {
+  public TileFlip(int width, int height, int difficulty) {
     tileBoard = new Tiles(width, height);
-    createRandomStart(serialNumber, randomGenerationLimit);
+    createRandomStart(difficulty);
   } // TileFlip(int, int)
 
   // +--------------+------------------------------------------------
@@ -75,7 +71,7 @@ public class TileFlip {
    */
   public boolean win() {
     Tiles successBoard = new Tiles(this.tileBoard.width(), this.tileBoard.height());
-    return tileBoard.equals(successBoard);
+    return tileBoard.checkEqual(successBoard);
   } // method
 
   /**
@@ -95,24 +91,14 @@ public class TileFlip {
 
   /**
    * Creates a solvable TileFlip with a random pattern.
-   * 
-   * @param serialNumber The id number that generates a specific tile board.
-   * @param randomGenerationLimit The amount of times to keep mixing up the board.
    */
-  public void createRandomStart(int serialNumber, int randomGenerationLimit) {
-    for (int i = 0; i < randomGenerationLimit; i++) {
-      this.flipTilesAction((serialNumber * i) % this.tileBoard.height(), (serialNumber * i) % this.tileBoard.width());
+  public void createRandomStart(int difficulty) {
+
+    Random rand = new Random();
+    for (int i = 0; i < difficulty; i++) {
+      this.flipTilesAction(rand.nextInt(this.tileBoard.height()), rand.nextInt(this.tileBoard.width()));
     } // for
   } // createRandomStart
-
-  /**
-   * Prints idNumber and generationNumber
-   *
-   * @param pen Used for printing.
-   */
-  public void giveIDandGenerationNums(PrintWriter pen) {
-    pen.println("ID: " + idNumber + "          " + "GENERATION: " + generationNumber);
-  } // giveIDandGenerationNums(PrintWriter)
 
   /**
    * Prints the tileBoard and the id and generation numbers.
@@ -120,7 +106,15 @@ public class TileFlip {
    * @param pen Used for printing.
    */
   public void printTileBoard(PrintWriter pen) {
-    giveIDandGenerationNums(pen);
     this.tileBoard.print(pen);
   } // printTileBoard(pen)
+
+  /**
+   * Gives tileBoard.
+   *
+   * @return TileBoard.
+   */
+  public Tiles giveTileBoard() {
+    return this.tileBoard;
+  }
 }
