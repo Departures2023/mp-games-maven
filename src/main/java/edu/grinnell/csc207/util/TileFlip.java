@@ -36,9 +36,7 @@ public class TileFlip {
 
   /**
    * Intializes TileFlip game with default sized board.
-   *
-   * @param serialNumber the specific pattern of the TileFlip game.
-   * @param randomGenerationLimit the number of times the board is mixed up.
+   * @param difficulty the specific pattern of the TileFlip game.
    */
   public TileFlip(int difficulty) {
     tileBoard = new Tiles(DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -50,8 +48,7 @@ public class TileFlip {
    *
    * @param width width of tileBoard
    * @param height height of tileBoard
-   * @param serialNumber the specific pattern of the TileFlip game.
-   * @param randomGenerationLimit the number of times the board is mixed up.
+   * @param difficulty the specific pattern of the TileFlip game.
    */
   public TileFlip(int width, int height, int difficulty) {
     tileBoard = new Tiles(width, height);
@@ -65,8 +62,6 @@ public class TileFlip {
   /**
    * Checks if the player has won the tile flip game,
    * by having every tile as O.
-   *
-   * @param board The board to check.
    * @return returns true if all tiles are O.
    */
   public boolean win() {
@@ -91,12 +86,13 @@ public class TileFlip {
 
   /**
    * Creates a solvable TileFlip with a random pattern.
+   * @param difficulty the specific pattern of the TileFlip game.
    */
   public void createRandomStart(int difficulty) {
-
     Random rand = new Random();
     for (int i = 0; i < difficulty; i++) {
-      this.flipTilesAction(rand.nextInt(this.tileBoard.height()), rand.nextInt(this.tileBoard.width()));
+      this.flipTilesAction(rand.nextInt(this.tileBoard.height()),
+          rand.nextInt(this.tileBoard.width()));
     } // for
   } // createRandomStart
 
@@ -116,5 +112,5 @@ public class TileFlip {
    */
   public Tiles giveTileBoard() {
     return this.tileBoard;
-  }
-}
+  } // giveTileBoard
+} // tileflip

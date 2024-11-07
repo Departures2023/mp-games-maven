@@ -9,7 +9,7 @@ import java.io.PrintWriter;
  * @author Richard Lin
  */
 public class Tiles {
-  
+
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
@@ -57,11 +57,12 @@ public class Tiles {
   /**
    * Returns the state of the tile located at width and height.
    *
-   * @param width width of the tile to look at.
-   * @param height height of the tile to look at.
+   * @param widthT width of the tile to look at.
+   * @param heightT height of the tile to look at.
+   * @return element at width and height.
    */
-  public String tileState(int width, int height) {
-    return tileBoard.get(width, height);
+  public String tileState(int widthT, int heightT) {
+    return tileBoard.get(widthT, heightT);
   } // tileState(int, int)
 
   /**
@@ -84,8 +85,6 @@ public class Tiles {
 
   /**
    * Flips a tile.
-   *
-   * @param board the board containing the tiles to flip.
    * @param row the row of the tile to be flipped.
    * @param col the column of the tile to be flipped.
    */
@@ -105,7 +104,7 @@ public class Tiles {
    * @param board the board to compare tileBoard to.
    * @return a boolean indicating equality of tiles.
    */
-  public boolean checkEqual(Tiles board){
+  public boolean checkEqual(Tiles board) {
     return this.tileBoard.equals(board.tileBoard);
   } // checkEqual(Tiles)
 
@@ -115,7 +114,7 @@ public class Tiles {
    * @param pen Used for printing.
    */
   public void print(PrintWriter pen) {
-    Matrix.print(pen, this.tileBoard,true);
+    Matrix.print(pen, this.tileBoard, true);
   } // print(PrintWriter)
 
 } // class Tiles

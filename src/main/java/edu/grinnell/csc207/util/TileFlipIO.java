@@ -23,12 +23,15 @@ public class TileFlipIO {
   int difficultyLevel;
 
   /**
-   * Boolean tracking if the game is finished
+   * Boolean tracking if the game is finished.
    */
   boolean isGameFinished;
 
+  /**
+   * Constructore for TileFlipIO.
+   */
   public TileFlipIO() {
-  }
+  } // TileFlipIO
 
   // +--------------+------------------------------------------------
   // | Core methods |
@@ -42,7 +45,8 @@ public class TileFlipIO {
   public void setupGame(String[] args) {
     if ((args.length == 2)) {
       if (checkStringOnlyInt(args[0]) && checkStringOnlyInt(args[1])) {
-        this.game = new TileFlip(Integer.parseInt(args[0]), Integer.parseInt(args[1]), this.difficultyLevel);
+        this.game = new TileFlip(Integer.parseInt(args[0]),
+            Integer.parseInt(args[1]), this.difficultyLevel);
         return;
       } // if
     } // if
@@ -66,7 +70,7 @@ public class TileFlipIO {
    * @param eyes Used for reading.
    * @throws IOException An Exception.
    */
-  public void playerAction(PrintWriter pen, BufferedReader eyes) throws IOException{
+  public void playerAction(PrintWriter pen, BufferedReader eyes) throws IOException {
     if (this.game.win()) {
       this.isGameFinished = true;
       pen.println("Game Success!");
@@ -74,6 +78,7 @@ public class TileFlipIO {
     } // if
 
     String[] commands = {"FLIP", "DONE"};
+    pen.println("Actions are {\"FLIP\", \"DONE\"}");
     String command = IOUtils.readCommand(pen, eyes, "Action: ", commands);
     switch (command.toUpperCase()) {
 
@@ -132,7 +137,7 @@ public class TileFlipIO {
    * @param pen Used for printing.
    * @throws IOException An exception.
    */
-  public void getDifficultyLevel (BufferedReader eyes, PrintWriter pen) throws IOException {
+  public void getDifficultyLevel(BufferedReader eyes, PrintWriter pen) throws IOException {
     while (true) {
 
       pen.print("Difficulty Level: ");
@@ -154,7 +159,11 @@ public class TileFlipIO {
     } // while
   } // getSerialandGenNumsHelper(BufferedReader, int, PrintWriter)
 
-  public boolean checkStringOnlyInt (String str) {
+  /**
+   * @param str input string
+   * @return true/false
+   */
+  public boolean checkStringOnlyInt(String str) {
     for (int i = 0; i < str.length(); i++) {
       if ((str.charAt(i) < '0') || (str.charAt(i) > '9')) {
         return false;
@@ -162,5 +171,4 @@ public class TileFlipIO {
     } // for
     return true;
   } // checkStringOnlyInt(String)
-
-}
+} // tileflipIO

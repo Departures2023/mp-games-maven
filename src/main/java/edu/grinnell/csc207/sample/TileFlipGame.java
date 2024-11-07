@@ -9,11 +9,11 @@ import java.io.PrintWriter;
 
 /**
  * Runs a Flip tile game.
- * 
+ *
  * @author Kevin Tang
  * @author Richard Lin
  */
-public class NewGame {
+public class TileFlipGame {
 
   // +------+--------------------------------------------------------
   // | Main |
@@ -30,15 +30,15 @@ public class NewGame {
     BufferedReader eyes = new BufferedReader(new InputStreamReader(System.in));
 
     // Set up the board
-    TileFlipIO Game = new TileFlipIO();
-    Game.getDifficultyLevel(eyes, pen);
-    Game.setupGame(args);
+    TileFlipIO game = new TileFlipIO();
+    game.getDifficultyLevel(eyes, pen);
+    game.setupGame(args);
 
 
-    while (!(Game.isGameFinished())) {
-      Game.printGame(pen);
-      Game.playerAction(pen, eyes);
-    }
+    while (!(game.isGameFinished())) {
+      game.printGame(pen);
+      game.playerAction(pen, eyes);
+    } // while
 
     // And we're done
     pen.close();
