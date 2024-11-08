@@ -97,7 +97,7 @@ public class TileFlip {
   } // createRandomStart
 
   /**
-   * Prints the tileBoard and the id and generation numbers.
+   * Prints the tileBoard.
    *
    * @param pen Used for printing.
    */

@@ -112,19 +112,19 @@ public class TileFlipIO {
   } // isGameFinished
 
   /**
-   * Prompts for Serial Number and Generation Number from the player.
+   * Prompts for Difficulty levek from the player.
    *
    * @param pen Used for printing.
    * @param eyes Used for reading.
    * @throws IOException an Exception.
    */
-  public void getSerialAndGenerationNums(PrintWriter pen, BufferedReader eyes) throws IOException {
+  public void getDifficultyLevel(PrintWriter pen, BufferedReader eyes) throws IOException {
 
     pen.println("What is the Difficulty Level?");
 
-    getDifficultyLevel(eyes, pen);
+    getDifficultyLevelHelper(eyes, pen);
 
-  } // getSerialAndGenerationNums(PrintWriter, BufferedReader)
+  } // getDifficultyLevel(PrintWriter, BufferedReader)
 
   // +----------------+------------------------------------------------------
   // | Helper Methods |
@@ -138,7 +138,7 @@ public class TileFlipIO {
    * @param pen Used for printing.
    * @throws IOException An exception.
    */
-  public void getDifficultyLevel(BufferedReader eyes, PrintWriter pen) throws IOException {
+  public void getDifficultyLevelHelper(BufferedReader eyes, PrintWriter pen) throws IOException {
     while (true) {
 
       pen.print("Difficulty Level: ");
@@ -161,7 +161,7 @@ public class TileFlipIO {
         pen.println("Invalid Input. Input must only be numbers. Please try again.");
       } // if/else
     } // while
-  } // getSerialandGenNumsHelper(BufferedReader, int, PrintWriter)
+  } // getDifficultyLevelHelper(BufferedReader, int, PrintWriter)
 
   /**
    * @param str input string
