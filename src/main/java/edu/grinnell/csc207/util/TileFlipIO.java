@@ -45,7 +45,8 @@ public class TileFlipIO {
    */
   public void setupGame(String[] args) {
     if ((args.length == 2)) {
-      if (checkStringOnlyInt(args[0]) && checkStringOnlyInt(args[1])) {
+      if (checkStringOnlyInt(args[0]) && checkStringOnlyInt(args[1])
+          && args[0].length() != 0 && args[1].length() != 0) {
         this.game = new TileFlip(Integer.parseInt(args[0]),
             Integer.parseInt(args[1]), this.difficultyLevel);
         return;
