@@ -31,7 +31,7 @@ public class TileFlipGame {
 
     // Set up the board
     TileFlipIO game = new TileFlipIO();
-    game.getDifficultyLevel(eyes, pen);
+    game.getDifficultyLevel(pen, eyes);
     game.setupGame(args);
 
 
