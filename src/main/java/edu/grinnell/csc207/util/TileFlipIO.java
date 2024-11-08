@@ -28,9 +28,10 @@ public class TileFlipIO {
   boolean isGameFinished;
 
   /**
-   * Constructore for TileFlipIO.
+   * Constructor for TileFlipIO.
    */
   public TileFlipIO() {
+    this.isGameFinished = false;
   } // TileFlipIO
 
   // +--------------+------------------------------------------------
@@ -145,14 +146,17 @@ public class TileFlipIO {
       pen.flush();
 
       String response = eyes.readLine();
-      if (checkStringOnlyInt(response)) {
+      if (checkStringOnlyInt(response) && response.length() != 0) {
         // cannot be 0 or negative number
-        if (Integer.parseInt(response) != 0) {
+        if (response.length() > 7) {
+          pen.println("Invalid Input. Input cannot be longer than 7 characters. Please try again.");
+        } else if (Integer.parseInt(response) != 0) {
+
           this.difficultyLevel = Integer.parseInt(response);
           return;
         } else {
           pen.println("Invalid Input. Input cannot be 0. Please try again.");
-        } // if/else
+        } // if/else-if/else
       } else {
         pen.println("Invalid Input. Input must only be numbers. Please try again.");
       } // if/else
